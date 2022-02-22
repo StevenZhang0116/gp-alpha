@@ -1,0 +1,48 @@
+GLOBAL:
+  DATACACHE: '/data/asim_cache_prod/dataver20190611/cn_equity/data'
+  PNLCACHE: '/data/asim_cache_prod/dataver20190611/cn_equity/pnl/alpha/daily'
+  PNLLOCAL: './pnl_daily'
+  LOGFOLDER: './log'
+  FINALSUBMIT: False
+  FINALDUMP: False
+  QUIET: False
+
+
+INPUT:
+  DELAY: 1  # asim中的delay参数.
+  SUBUNIV: 'UnivTOP4000'
+  START_DATE: 20150101  # 起始日期
+  END_DATE: 20210901  # 结束日期(不包括)
+  VALID_SIZE: 244  # 验证集天数
+
+OUTPUT:
+  LOCATION: ''
+
+MODEL:
+  EPOCHS: 30  # epoch最大数量
+  PATIENCE: 6  # 早停法的参数
+  ROLLBACK: 6
+  PADECAY: 0.8
+  POP_SIZE: 30  # 个体数量
+  MIN_HEIGHT: 3  # 树最小高度(高度指树能退化为链表时的长度)
+  MAX_HEIGHT: 6  # 树最大高度
+
+  STRUCTURE_OPTIMIZER:
+    # 在这里修改/添加/删除crossover和mutation操作. CROSSOVER要求输入两棵树, MUTATION则为一棵. 若要弃用, 将PROB设为0.
+    CROSSOVER:
+      basicCO:
+        PROB: 0.7
+    MUTATION:
+      hoistMT:
+        PROB: 0.1
+      subtreeMT:
+        PROB: 0.1
+      pointMT:
+        PROB: 0.1
+      selfCO:
+        PROB: 0.0
+      displacementMT:
+        PROB: 0.0
+
+MULTIPROCESSING:
+  N_PROCESSES: 30  # 进程数量, 0表示关闭多进程. 已经限制了numpy的多线程, 每个进程应该最多占用100%的CPU.

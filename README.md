@@ -1,3 +1,3 @@
 # gp-alpha
 
-Use genetic programming (mutation and crossover) to automatically generate formulaic Alpha factors with performance tests (PNL, turnover rate, annual return, etc.). 
+Group research with Zehua Yu (Fudan University, Columbia University) mentored by Jiayi Xie during my internship in [Egret Quant](https://www.egretquant.com/). Use genetic programming to automatically dig factors by crossover and mutation to the formula trees using daily price/volume data. Modify the source code of the [DEAP](https://deap.readthedocs.io/en/master/) package to add more functionalities, including data APIs, analytic tools, units check, correlation restrictions with existing factors, etc. Add more out-of-sample tests, like the trapezoidal pattern of PNL curves, uniformity in different pools, and consistency under power tests, to improve the model’s robustness both in the short-term and long-term.
